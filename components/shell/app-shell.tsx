@@ -6,6 +6,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { cn } from "@/lib/utils"
+import ClickSpark from "@/components/ClickSpark"
 
 const nav = [
   { href: "/", label: "Dashboard" },
@@ -21,7 +22,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     <div className="min-h-dvh grid grid-cols-1 md:grid-cols-[260px_1fr]">
       {/* Sidebar */}
       <aside className="bg-sidebar text-sidebar-foreground border-r border-sidebar-border">
-        <div className="p-4 font-semibold">Task Manager</div>
+        <div className="p-4 font-semibold text-2xl md:text-3xl leading-tight tracking-tight">Task Manager</div>
         <nav className="flex flex-col gap-1 px-2 pb-4">
           {nav.map((item) => (
             <Link
@@ -40,13 +41,15 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
       {/* Main */}
       <div className="flex min-h-dvh flex-col">
-        <header className="flex items-center justify-between gap-3 border-b px-4 py-3 bg-card">
-          <h1 className="text-lg font-semibold text-pretty">Sticky Notes Tasks</h1>
-          <div className="flex items-center gap-2">
-            <ThemeToggle />
-          </div>
-        </header>
-        <main className="p-4">{children}</main>
+        <ClickSpark sparkColor="#fff" sparkSize={10} sparkRadius={15} sparkCount={8} duration={400}>
+          <header className="flex items-center justify-between gap-3 border-b px-4 py-3 bg-card">
+            <h1 className="text-lg font-semibold text-pretty">Sticky Notes Tasks</h1>
+            <div className="flex items-center gap-2">
+              <ThemeToggle />
+            </div>
+          </header>
+          <main className="p-4">{children}</main>
+        </ClickSpark>
       </div>
     </div>
   )
