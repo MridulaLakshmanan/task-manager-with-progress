@@ -1,30 +1,26 @@
 "use client"
 
-import { Pie, PieChart, ResponsiveContainer, Tooltip, Cell } from "recharts"
+import { Pie, PieChart, ResponsiveContainer, Cell } from "recharts"
 import { categoryProgress } from "@/lib/tasks"
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 
-const COLORS = [
-  "var(--color-chart-1)",
-  "var(--color-chart-2)",
-  "var(--color-chart-3)",
-  "var(--color-chart-4)",
-  "var(--color-chart-5)",
-]
+const NOTE_COLORS = ["#fef3c7", "#dbeafe"]
 
 export default function CategoryPie({ tasks }: { tasks: any[] }) {
   const data = categoryProgress(tasks).map((c) => ({ name: c.category, value: c.done }))
+
   return (
-    <div className="h-64">
+    <ChartContainer config={{}} className="h-64">
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie data={data} dataKey="value" nameKey="name" innerRadius={50} outerRadius={80}>
             {data.map((_, i) => (
-              <Cell key={i} fill={COLORS[i % COLORS.length]} />
+              <Cell key={i} fill={NOTE_COLORS[i % NOTE_COLORS.length]} />
             ))}
           </Pie>
-          <Tooltip />
+          <ChartTooltip content={<ChartTooltipContent />} />
         </PieChart>
       </ResponsiveContainer>
-    </div>
+    </ChartContainer>
   )
 }

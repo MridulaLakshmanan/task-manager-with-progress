@@ -41,7 +41,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
       {/* Main */}
       <div className="flex min-h-dvh flex-col">
-        <ClickSpark sparkColor="#fff" sparkSize={10} sparkRadius={15} sparkCount={8} duration={400}>
+        <ClickSpark sparkSize={10} sparkRadius={15} sparkCount={8} duration={400}>
           <header className="flex items-center justify-between gap-3 border-b px-4 py-3 bg-card">
             <h1 className="text-lg font-semibold text-pretty">Sticky Notes Tasks</h1>
             <div className="flex items-center gap-2">

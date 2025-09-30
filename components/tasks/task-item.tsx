@@ -43,6 +43,7 @@ export default function TaskItem({
       className={`
         group grid grid-rows-[auto_1fr_auto] grid-cols-1 items-start gap-3
         rounded-[10px] border p-4 aspect-square overflow-hidden
+        text-[var(--note-foreground)]
         shadow-[0_8px_14px_rgba(0,0,0,0.08)]
         transition-[transform,box-shadow] transform-gpu
         hover:shadow-[0_12px_22px_rgba(0,0,0,0.12)] hover:scale-[1.02]
@@ -64,12 +65,14 @@ export default function TaskItem({
             {task.priority}
           </span>
         </div>
-        {task.description ? <p className="text-sm text-muted-foreground line-clamp-4">{task.description}</p> : null}
+        {task.description ? <p className="text-sm opacity-80 line-clamp-4">{task.description}</p> : null}
         <div className="flex flex-wrap gap-2 text-xs">
-          {task.category ? <span className="rounded bg-card px-2 py-0.5 border">#{task.category}</span> : null}
+          {task.category ? (
+            <span className="rounded px-2 py-0.5 border border-foreground/20">#{task.category}</span>
+          ) : null}
           {due ? (
             <span
-              className={`rounded px-2 py-0.5 border ${overdue ? "bg-destructive text-destructive-foreground" : "bg-card"}`}
+              className={`rounded px-2 py-0.5 border ${overdue ? "bg-destructive text-destructive-foreground" : ""}`}
             >
               Due {due.toLocaleDateString()}
             </span>

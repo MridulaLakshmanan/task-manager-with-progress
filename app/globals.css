@@ -52,6 +52,11 @@
   --sidebar-accent-foreground: var(--foreground);
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
+
+  /* theme-driven spark and note foreground colors + caret color */
+  --spark-color: #0ea5a5; /* light: teal spark */
+  --note-foreground: oklch(0.22 0.03 255); /* dark text for light sticky-note gradient */
+  --cursor-color: #0ea5a5; /* light text caret */
 }
 
 .dark {
@@ -95,6 +100,11 @@
   --sidebar-accent-foreground: var(--foreground);
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
+
+  /* dark theme spark and caret color; keep note text dark for contrast on light note */
+  --spark-color: #39ff14; /* dark: neon green spark */
+  --note-foreground: oklch(0.22 0.03 255);
+  --cursor-color: #39ff14; /* dark text caret */
 }
 
 @theme inline {
@@ -144,5 +154,7 @@
   }
   body {
     @apply bg-background text-foreground text-base md:text-lg leading-relaxed;
+    /* set caret color to theme variable */
+    caret-color: var(--cursor-color);
   }
 }

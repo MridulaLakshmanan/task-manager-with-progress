@@ -98,6 +98,12 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
       }
       ctx?.clearRect(0, 0, canvas.width, canvas.height)
 
+      const cssSpark =
+        typeof window !== "undefined"
+          ? getComputedStyle(document.documentElement).getPropertyValue("--spark-color").trim()
+          : ""
+      const stroke = cssSpark || sparkColor
+
       sparksRef.current = sparksRef.current.filter((spark: Spark) => {
         const elapsed = timestamp - spark.startTime
         if (elapsed >= duration) {
@@ -115,7 +121,7 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
         const x2 = spark.x + (distance + lineLength) * Math.cos(spark.angle)
         const y2 = spark.y + (distance + lineLength) * Math.sin(spark.angle)
 
-        ctx.strokeStyle = sparkColor
+        ctx.strokeStyle = stroke // themed spark color
         ctx.lineWidth = 2
         ctx.beginPath()
         ctx.moveTo(x1, y1)
